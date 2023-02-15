@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dokdo&family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            font-family: 'Fredoka One', cursive;
+            color: #fff;
+            font-size: 2rem;
+        }
+
+        .splat {
+            position: absolute;
+            z-index: 0;
+            mix-blend-mode: difference;
+            opacity: 0;
+        }
+
+        #left {
+            position: absolute;
+            mix-blend-mode: difference;
+        }
+
+        #right {
+            position: absolute;
+            z-index: 100;
+            mix-blend-mode: difference;
+        }
+
+        #text {
+            position: absolute;
+            z-index: 100;
+            width: 100%;
+            text-align: center;
+            top: 40%;
+            transform: translateY(-50%);
+        }
+
+        #text h1 {
+            font-family: 'Dokdo', cursive;
+            font-size: 7rem;
+            color: #fff;
+        }
+
+        a:link, a:visited  {
+            color: #ffa2c4;
+            text-decoration-style: solid;
+        }
+
+        a:hover {
+            color: #fe5ec4;
+            text-decoration-style: wavy;
+        }
+
+
+        circle {
+            transition: 1s;
+            mix-blend-mode: difference;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="text">
+        <h1>Hi, <span></span>!</h1>
+        
+        Iona Jo turns 7!
+        Join us for a splatter paint party.
+        <br>March 4, 2–3:30pm @ Create Studio
+        <br><a href="">RSVP</a>
+    </div>
+    <div id="splatter">
+
+    </div>
+    <!-- <img class='splat' src="graphics/blue.svg">
+    <img class='splat' src="graphics/green.svg">
+    <img class='splat' src="graphics/yellow.svg">
+    <img class='splat' src="graphics/red.svg">
+    <img class='splat' src="graphics/pink.svg">
+    <img class='splat' src="graphics/cyan.svg"> -->
+    <!-- <circle cx="50" cy="50" r="48" stroke="green" stroke-width="4" fill="yellow" />
+      </svg> -->
+    <!-- <svg id='right' width="100" height="100">
+        <circle cx="50" cy="50" r="48" stroke="green" stroke-width="4" fill="pink" />
+      </svg> -->
+    <script>
+
+        const url = window.location.search;
+        const searchParams = new URLSearchParams(url);
+        const name = searchParams.get('name');
+        const title = document.querySelector('#text h1 span');
+        name ? title.innerHTML = name : title.innerHTML = 'Friend';
+        let w = window.innerWidth;
+        let h = window.innerHeight;
+        const colors = ['blue', 'green', 'yellow', 'red', 'pink', 'cyan'];
+        // const splat = document.querySelectorAll('.splat');
+        // console.log(splat);
+        // splat.forEach((s) => {
+        //     const x = Math.random() * 2;
+        //     s.setAttribute('width', w * x);
+        //     s.setAttribute('height', h* x);
+        // });
+
+        for (let i = 0; i < 60; i++) {
+            const a = []
+            for (let i = 0; i < 14; i++) {
+                a.push(Math.random());
+            }
+            let x = (a[0] * 4) ** 2;
+            let y = a[1] < 0.5 ? -1 : 1;
+            let z = a[2] < 0.5 ? -1 : 1;
+            img = document.createElement('img');
+            img.width = w / 4 * x;
+            img.height = h / 4 * x;
+            const s1 = w / 8 * y;
+            const s2 = h / 8 * z;
+            const horz = [a[4] * s1, a[5] * s1];
+            const vert = [a[6] * s2, a[7] * s2];
+            const left = a[8] < 0.5 ? horz[0] : horz[1];
+            const top = a[9] < 0.5 ? vert[0] : vert[1];
+            const l1 = a[10] < 0.5 ? 'left' : 'right';
+            const l2 = a[11] < 0.5 ? 'top' : 'bottom';
+            img.setAttribute('style', `${l1}: ${left}px; ${l2}: ${top}px;`);
+            img.src = `graphics/${colors[Math.floor(a[12] * colors.length)]}.svg`;
+            img.classList.add('splat');
+            setDelay(img)
+            document.querySelector('#splatter').appendChild(img);
+
+        }
+        function setDelay(i) {
+            setTimeout(function () {
+                i.style.opacity = 0.5;
+            }, Math.random() * 3000);
+        }
+        // document.querySelector('#left').setAttribute('width', w/2);
+        // document.querySelector('#left').setAttribute('height', h/2);
+        // document.querySelector('#right').setAttribute('width', w);
+        // document.querySelector('#right').setAttribute('height', h);
+        // document.querySelector('#left circle').setAttribute('r', w/6);
+        // document.querySelector('#right circle').setAttribute('r', w/6);
+
+        // document.querySelector('#left circle').setAttribute('cx', w/2 - 50);
+        // document.querySelector('#left circle').setAttribute('cy', h/2);
+        // document.querySelector('#right circle').setAttribute('cx', w/2 + 50);
+        // document.querySelector('#right circle').setAttribute('cy', h/2);
+
+    </script>
+</body>
+
+</html>
