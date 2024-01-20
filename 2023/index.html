@@ -8,11 +8,12 @@
     <link rel="icon" 
       type="image/png" 
       href="favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Rubik+Broken+Fax&family=Rubik+Glitch&family=Rubik+Moonrocks&display=swap"
-      rel="stylesheet">
+      href="https://fonts.googleapis.com/css2?family=Dokdo&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
@@ -22,9 +23,9 @@
 
       body {
         background: #000;
-        font-family: 'Rubik Broken Fax', system-ui;
+        font-family: "Fredoka One", sans-serif;
         color: #fff;
-        font-size: 2.5rem;
+        font-size: 2rem;
         height: 100vh;
       }
 
@@ -52,10 +53,10 @@
         transform: translateY(-50%);
       }
 
-      #text p {
-        font-family: 'Rubik Glitch', system-ui;
+      #text h1 {
+        font-family: "Dokdo", sans-serif;
         font-size: 7rem;
-        color: #ffa2c4;
+        color: #fff;
         line-height: 0.7em;
         margin-bottom: 1rem;
       }
@@ -80,21 +81,21 @@
 
   <body>
     <div id="text">
-      <p>Hi, <span></span>!</p>
+      <h1>Hi, <span></span>!</h1>
 
-      Iona Jo turns 8! Join us for laser tag and games
-      <br />March 4, 2–3:30pm @ The Main Event<br />🎂🚀🎈
+      Iona Jo turns 7! Join us for a splatter paint party
+      <br />March 4, 2–3:30pm @ Create Studio <br />🎂😽🎈
       <a href="https://forms.gle/7PKUho5xNf42PGvw9" target="_blank">RSVP</a>
-      🎈🧑‍🚀🎉
+      🎈🐶🎉
     </div>
     <div id="splatter"></div>
     <script>
-      const colors = ["blue", "green", "pink"];
-      const happy = ["#FFA6FF", " #8FDEFF", " #80F790", "#FCF260"];
+      const colors = ["blue", "green", "yellow", "red", "pink", "cyan"];
+      const happy = ["#E0BBE4", " #D291BC", " #FEC8D8", "#FFDFD3"];
       const url = window.location.search;
       const searchParams = new URLSearchParams(url);
       const name = searchParams.get("name");
-      const title = document.querySelector("#text p span");
+      const title = document.querySelector("#text h1 span");
       const link = document.querySelector("#text a");
       name ? (title.innerHTML = name) : (title.innerHTML = "Friend");
       setColor(title);
@@ -104,7 +105,7 @@
       };
       let w = window.innerWidth;
       let h = window.innerHeight;
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 60; i++) {
         const a = [];
         for (let i = 0; i < 14; i++) {
           a.push(Math.random());
@@ -123,7 +124,7 @@
         const top = a[9] < 0.5 ? vert[0] : vert[1];
         const l1 = a[10] < 0.5 ? "left" : "right";
         const l2 = a[11] < 0.5 ? "top" : "bottom";
-        img.setAttribute("style", `${l1}: ${left}px; ${l2}: ${top}px; transform: rotate(${a[3] * 360}deg)`);
+        img.setAttribute("style", `${l1}: ${left}px; ${l2}: ${top}px;`);
         img.src = `graphics/${colors[Math.floor(a[12] * colors.length)]}.svg`;
         img.classList.add("splat");
         setDelay(img);
